@@ -4,7 +4,7 @@
 # BUILD: docker build --rm -t puckel/docker-airflow .
 # SOURCE: https://github.com/puckel/docker-airflow
 
-FROM python:2.7-stretch
+FROM debian:stretch
 MAINTAINER Puckel_
 
 # Never prompts the user for choices on installation/configuration of packages
