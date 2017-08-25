@@ -1,10 +1,10 @@
-# VERSION 1.8.1-1
+# VERSION 1.8.1
 # AUTHOR: Matthieu "Puckel_" Roisil
 # DESCRIPTION: Basic Airflow container
 # BUILD: docker build --rm -t puckel/docker-airflow .
 # SOURCE: https://github.com/puckel/docker-airflow
 
-FROM python:3.6-stretch
+FROM python:2.7-stretch
 MAINTAINER Puckel_
 
 # Never prompts the user for choices on installation/configuration of packages
@@ -25,7 +25,7 @@ ENV LC_ALL en_US.UTF-8
 
 RUN set -ex \
     && buildDeps=' \
-        python3-dev \
+        python-dev \
         libkrb5-dev \
         libsasl2-dev \
         libssl-dev \
@@ -39,8 +39,8 @@ RUN set -ex \
     && apt-get update -yqq \
     && apt-get install -yqq --no-install-recommends \
         $buildDeps \
-        python3-pip \
-        python3-requests \
+        python-pip \
+        python-requests \
         apt-utils \
         curl \
         netcat \
