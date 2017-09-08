@@ -25,7 +25,7 @@ ENV LC_ALL en_US.UTF-8
 
 RUN set -ex \
     && buildDeps=' \
-        python-dev \
+        python3-dev \
         libkrb5-dev \
         libsasl2-dev \
         libssl-dev \
@@ -39,8 +39,8 @@ RUN set -ex \
     && apt-get update -yqq \
     && apt-get install -yqq --no-install-recommends \
         $buildDeps \
-        python-pip \
-        python-requests \
+        python3-pip \
+        python3-requests \
         apt-utils \
         curl \
         netcat \
