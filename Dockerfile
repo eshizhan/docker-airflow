@@ -1,4 +1,4 @@
-# VERSION 1.8.1
+# VERSION 1.8.2
 # AUTHOR: Matthieu "Puckel_" Roisil
 # DESCRIPTION: Basic Airflow container
 # BUILD: docker build --rm -t puckel/docker-airflow .
@@ -12,7 +12,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 
 # Airflow
-ARG AIRFLOW_VERSION=1.8.1
+ARG AIRFLOW_VERSION=1.8.2
 ARG AIRFLOW_HOME=/usr/local/airflow
 
 # Define en_US.
@@ -45,6 +45,10 @@ RUN set -ex \
         curl \
         netcat \
         locales \
+    && ln -s /usr/bin/python3 /usr/local/bin/python \
+    && ln -s /usr/bin/pydoc3 /usr/local/bin/pydoc \
+    && ln -s /usr/bin/python3-config /usr/local/bin/python-config \
+    && ln -s /usr/bin/pip3 /usr/local/bin/pip \
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
@@ -55,9 +59,9 @@ RUN set -ex \
     && pip install pyOpenSSL \
     && pip install ndg-httpsclient \
     && pip install pyasn1 \
-    && pip install apache-airflow[crypto,celery,postgres,hive,jdbc]==$AIRFLOW_VERSION \
+    && pip install apache-airflow[crypto,celery,postgres,hive,jdbc,password]==$AIRFLOW_VERSION \
     && pip install celery[redis]==3.1.17 \
-    && apt-get purge -y --auto-remove $buildDeps \
+    && apt-get purge --auto-remove -yqq $buildDeps \
     && apt-get clean \
     && rm -rf \
         /var/lib/apt/lists/* \
