@@ -48,6 +48,7 @@ RUN set -ex \
         locales \
         vim-tiny \
         openssh-client \
+        patch \
     && ln -s /usr/bin/python3 /usr/local/bin/python \
     && ln -s /usr/bin/pydoc3 /usr/local/bin/pydoc \
     && ln -s /usr/bin/python3-config /usr/local/bin/python-config \
